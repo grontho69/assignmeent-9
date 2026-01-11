@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1",
+    "title": "PUBG: Battlegrounds",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg",
+    "category": "Battle Royale",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.tencent.ig",
+    "description": "A tactical battle royale shooter where players fight to be the last survivor.",
+    "ratings": "4.3",
+    "developer": "Krafton"
+  },
+  {
+    "id": "2",
+    "title": "Call of Duty",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/1938090/header.jpg",
+    "category": "FPS",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter",
+    "description": "Fast-paced first-person shooter with multiplayer and battle royale modes.",
+    "ratings": "4.3",
+    "developer": "Activision"
+  },
+  {
+    "id": "3",
+    "title": "Among Us",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/header.jpg",
+    "category": "Party",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.innersloth.spacemafia",
+    "description": "A social deduction game of teamwork and betrayal in space.",
+    "ratings": "4.2",
+    "developer": "Innersloth"
+  },
+  {
+    "id": "4",
+    "title": "Stumble Guys",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/1677740/header.jpg",
+    "category": "Party",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.kitka.stumble.guys",
+    "description": "Multiplayer knockout chaos race with fun obstacle courses.",
+    "ratings": "4.1",
+    "developer": "Kitka Games"
+  },
+  {
+    "id": "5",
+    "title": "Apex Legends",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg",
+    "category": "Battle Royale",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.ea.gp.apexlegendsmobilefps",
+    "description": "Hero-based battle royale with squad-focused gameplay.",
+    "ratings": "4.0",
+    "developer": "Respawn Entertainment"
+  },
+  {
+    "id": "6",
+    "title": "Fall Guys",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/header.jpg",
+    "category": "Party",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.mediatonic.fallguys",
+    "description": "Massively multiplayer party game with obstacle-based challenges.",
+    "ratings": "4.4",
+    "developer": "Mediatonic"
+  },
+  {
+    "id": "7",
+    "title": "Brawlhalla",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/291550/header.jpg",
+    "category": "Fighting",
+    "downloadLink": "https://play.google.com/store/apps/details?id=air.com.ubisoft.brawl.halla.platform.fighting.action.pvp",
+    "description": "Free-to-play platform fighter with online multiplayer.",
+    "ratings": "4.2",
+    "developer": "Blue Mammoth Games"
+  },
+  {
+    "id": "8",
+    "title": "ARK: Survival Evolved",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/346110/header.jpg",
+    "category": "Survival",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.studiowildcard.wardrumstudios.ark",
+    "description": "Survive, tame dinosaurs, and explore massive open worlds.",
+    "ratings": "4.0",
+    "developer": "Studio Wildcard"
+  },
+  {
+    "id": "9",
+    "title": "Genshin Impact",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/1674540/header.jpg",
+    "category": "RPG",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact",
+    "description": "Open-world action RPG with elemental combat and exploration.",
+    "ratings": "4.4",
+    "developer": "HoYoverse"
+  },
+  {
+    "id": "10",
+    "title": "Rocket League",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/252950/header.jpg",
+    "category": "Sports",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.Psyonix.RL2D",
+    "description": "High-powered car soccer with competitive online matches.",
+    "ratings": "4.3",
+    "developer": "Psyonix"
+  },
+  {
+    "id": "11",
+    "title": "Minecraft",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/1672970/header.jpg",
+    "category": "Sandbox",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe",
+    "description": "Creative sandbox game focused on building and survival.",
+    "ratings": "4.5",
+    "developer": "Mojang"
+  },
+  {
+    "id": "12",
+    "title": "Terraria",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/105600/header.jpg",
+    "category": "Adventure",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.and.games505.TerrariaPaid",
+    "description": "2D sandbox adventure with crafting and exploration.",
+    "ratings": "4.6",
+    "developer": "Re-Logic"
+  },
+  {
+    "id": "13",
+    "title": "Dead by Daylight",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/381210/header.jpg",
+    "category": "Horror",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.bhvr.deadbydaylight",
+    "description": "Asymmetrical horror multiplayer survival game.",
+    "ratings": "4.1",
+    "developer": "Behaviour Interactive"
+  },
+  {
+    "id": "14",
+    "title": "The Forest",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/242760/header.jpg",
+    "category": "Survival",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.endnightgames.forest",
+    "description": "Survive a mysterious forest filled with dangers.",
+    "ratings": "4.2",
+    "developer": "Endnight Games"
+  },
+  {
+    "id": "15",
+    "title": "Rust",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/252490/header.jpg",
+    "category": "Survival",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.facepunch.rust",
+    "description": "Multiplayer survival game focused on crafting and PvP.",
+    "ratings": "4.0",
+    "developer": "Facepunch Studios"
+  },
+  {
+    "id": "16",
+    "title": "Human: Fall Flat",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/477160/header.jpg",
+    "category": "Puzzle",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.and.games505.humanfallflat",
+    "description": "Physics-based puzzle platformer with co-op gameplay.",
+    "ratings": "4.4",
+    "developer": "No Brakes Games"
+  },
+  {
+    "id": "17",
+    "title": "Gang Beasts",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/285900/header.jpg",
+    "category": "Party",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.boneloaf.gangbeasts",
+    "description": "Ridiculous multiplayer brawler with soft-body physics.",
+    "ratings": "4.3",
+    "developer": "Boneloaf"
+  },
+  {
+    "id": "18",
+    "title": "World of Tanks",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/1407200/header.jpg",
+    "category": "Action",
+    "downloadLink": "https://play.google.com/store/apps/details?id=net.wargaming.wot.blitz",
+    "description": "Tank warfare with strategic real-time battles.",
+    "ratings": "4.2",
+    "developer": "Wargaming"
+  },
+  {
+    "id": "19",
+    "title": "Payday 2",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/218620/header.jpg",
+    "category": "Action",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.overkill.paydaycrimewar",
+    "description": "Co-op heist shooter focused on teamwork and planning.",
+    "ratings": "4.1",
+    "developer": "Overkill Software"
+  },
+  {
+    "id": "20",
+    "title": "Portal 2",
+    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/620/header.jpg",
+    "category": "Puzzle",
+    "downloadLink": "https://play.google.com/store/apps/details?id=com.valve.portal2",
+    "description": "Mind-bending puzzle game using portal mechanics.",
+    "ratings": "4.8",
+    "developer": "Valve"
+  }
+]
