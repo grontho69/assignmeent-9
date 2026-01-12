@@ -1,10 +1,13 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home";
-import AllApps from "../Pages/AllApps";
-import Installation from './../Pages/Installation';
+
 import Errorpage from "../Pages/Errorpage";
-import AppDetails from "../Pages/AppDetails";
+
+import AllGames from "../Pages/AllGames";
+import Login from "../Pages/Login";
+import GameDetails from "../Pages/GameDetails";
+import Register from "../Pages/Register";
 
 
 
@@ -21,18 +24,22 @@ export const router = createBrowserRouter([
         
       },
       {
-        path: '/all-apps',
-        element:<AllApps/>,
+        path: '/all-games',
+        element:<AllGames/>,
       },
       {
-        path: '/installation',
-        element: <Installation />,
+        path: '/login',
+        element: <Login />,
         
       },
       {
-        path: '/app-details/:id',
-        element: <AppDetails />,
+        path: '/game-details/:id',
+        element: <GameDetails />,
         
+      },
+      {
+        path: '/register',
+        element:<Register/>,
       },
       {
         path: '*',

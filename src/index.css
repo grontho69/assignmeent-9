@@ -1,2 +1,134 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 30px #00f0ff;
+  }
+  50% {
+    text-shadow: 0 0 20px #00f0ff, 0 0 30px #00f0ff, 0 0 40px #00f0ff;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff, 0 0 15px #00f0ff;
+  }
+  50% {
+    box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 30px #00f0ff;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.neon-text {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+.glow-border {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f0ff 0%, #ff00f5 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00d4ff 0%, #e600d4 100%);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #00f0ff 0%, #ff00f5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Neon border */
+.neon-border {
+  border: 2px solid #00f0ff;
+  box-shadow: 0 0 10px #00f0ff, inset 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+/* Cyberpunk button */
+.cyber-button {
+  position: relative;
+  background: linear-gradient(135deg, #00f0ff 0%, #ff00f5 100%);
+  border: none;
+  overflow: hidden;
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.cyber-button:hover::before {
+  left: 100%;
+}
+
+/* Grid background pattern */
+.grid-background {
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Holographic card effect */
+.holo-card {
+  background: linear-gradient(135deg, 
+    rgba(0, 240, 255, 0.1) 0%, 
+    rgba(255, 0, 245, 0.1) 50%, 
+    rgba(0, 240, 255, 0.1) 100%);
+  transition: all 0.3s ease;
+}
+
+.holo-card:hover {
+  background: linear-gradient(135deg, 
+    rgba(0, 240, 255, 0.2) 0%, 
+    rgba(255, 0, 245, 0.2) 50%, 
+    rgba(0, 240, 255, 0.2) 100%);
+  transform: translateY(-5px);
+}
