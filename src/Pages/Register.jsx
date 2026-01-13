@@ -93,7 +93,7 @@ const Register = () => {
           <button  type="submit"
               className="w-full cyber-button py-3 text-white rounded-xl font-medium">Register</button>
      
-        </form>
+       
 
          
           <div className="my-6 flex items-center">
@@ -125,7 +125,8 @@ const Register = () => {
             >
               Login here
             </Link>
-          </p>
+            </p>
+             </form>
         </div>
       </Motion.div>
     </div>

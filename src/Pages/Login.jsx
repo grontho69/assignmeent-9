@@ -1,11 +1,41 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
-import { Eye, EyeOff, Sparkles } from "lucide-react";
+import { Link, NavLink } from "react-router";
+import { Eye, EyeOff, LogOut, Sparkles, User } from "lucide-react";
 import { motion as Motion } from "motion/react";
+import { signInWithEmailAndPassword } from "firebase/auth/cordova";
+import { auth } from "../firebase/Firebase.Config";
+import { toast } from "react-toastify";
+import { signOut } from "firebase/auth";
 
-const Login = () => {
+
+const Login = () => { 
+  const [user, setUser] = useState(null);
+
+
+  const handelSignin = (e) => {
+    
+    e.preventDefault();
+      const email = e.target.email.value;
+    const password = e.target.password.value;
+    signInWithEmailAndPassword(auth, email, password).then(res => {
+      console.log(res);
+      setUser(res.user)
+      toast.success("login successfull")
+    }).catch(e => {
+      toast.error(e.message)
+    })
+  }
+  console.log(user)
+  const logout = () => {
+    signOut(auth).then(() => {
+      toast.success("logout sucessfull")
+      setUser(null)
+    }).catch((e) => {
+      toast.error(e.message);
+    })
+  }
+  const [show, setShow] = useState(false);
   
-    const [show, setShow] = useState(false);
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 grid-background flex items-center justify-center px-4 py-12">
       <Motion.div
@@ -31,63 +61,85 @@ const Login = () => {
           </h2>
 
           
-          <form className="space-y-5">
-            
-           
+        { user ? (
+              
             <div>
-              <label className="block text-gray-300 mb-2 font-medium">
-                Email
-              </label>
-              <div className="relative">
-               
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                />
-              </div>
-            </div>
-
-            
-            <div>
-              <label className="block text-gray-300 mb-2 font-medium">
-                Password
-              </label>
-              <div className="relative">
-               
-                <input
-                  type= {show ? "text" :"password"}
-                  placeholder="••••••••"
-                  className="w-full pl-12 pr-12 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                />
-              <button
-                  type="button"
-                  onClick={()=> setShow(!show)}
-                  className="absolute right-4 top-1/2 z-50 text-gray-500 hover:text-cyan-400 transition-colors"
+               <NavLink 
+                  to="/login" 
+                  className="text-sm text-gray-300 hover:text-cyan-400 transition-colors"
                 >
-                  {show ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register" 
+                  className="px-4 py-2 cyber-button text-white rounded-lg text-sm font-medium relative overflow-hidden group"
+                >
+                  <span className="relative z-10">Register</span>
+                </NavLink>
+              
+            
+              <div className="flex items-center gap-4">
+                
+                {/* Profile */}
+                <NavLink
+                  to="/profile"
+                  className="flex items-center gap-2 group"
+                  title="My Profile"
+                >
+                  {user.photoURL ? (
+                    <div className="relative">
+                      <img
+                        src={user.photoURL}
+                        alt={user.displayName || "User"}
+                        className="w-8 h-8 rounded-full object-cover neon-border group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all"
+                      />
+                      <div className="absolute inset-0 rounded-full bg-linear-to-r from-cyan-400/20 to-pink-500/20 group-hover:from-cyan-400/30 group-hover:to-pink-500/30 transition-all" />
+                    </div>
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-linear-to-br from-cyan-500 to-pink-500 flex items-center justify-center neon-border">
+                      <User className="w-4 h-4 text-white" />
+                    </div>
+                  )}
+                </NavLink>
+
+                {/* Logout */}
+                <button
+                  onClick={logout}
+                  className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-pink-400 transition-colors group"
+                  title="Logout"
+                >
+                  <LogOut className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                  <span>Logout</span>
                 </button>
               </div>
-            </div>
-
+              </div>
+            ):(  <form onSubmit={handelSignin} className="space-y-4">
+                                 
+                   <label htmlFor="email" className="block text-gray-300 mb-2 font-medium">Email</label>
+                 <input type="email" name="email"  className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+                         placeholder="your@email.com" required />
+                   <div className="relative group">
+                      <label htmlFor="password" className="block text-gray-300 mb-2 font-medium">Password</label>
+                   <input
+                     type= {show ? "text" :"password"}
+                     name="password"
+                     className="w-full pl-12 pr-12 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+                         placeholder="••••••••"
+                     required
+                     />
+                      <button
+                         type="button"
+                         onClick={()=> setShow(!show)}
+                         className="absolute right-4 top-1/2 z-50 text-gray-500 hover:text-cyan-400 transition-colors"
+                       >
+                         {show ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+                       </button>
+                   
+                 </div>
+                 <button  type="submit"
+                     className="w-full cyber-button py-3 text-white rounded-xl font-medium"> Login </button>
             
-            <div className="text-right">
-              <Link
-                to="/forgot-password"
-                className="text-sm text-cyan-400 hover:text-pink-400 transition-colors"
-              >
-                Forgot Password?
-              </Link>
-            </div>
-
-            
-            <button
-              type="button"
-              className="w-full cyber-button py-3 text-white rounded-xl font-medium"
-            >
-              Login
-            </button>
-          </form>
+               
 
        
           <div className="my-6 flex items-center">
@@ -118,7 +170,8 @@ const Login = () => {
             >
               Register here
             </Link>
-          </p>
+            </p>
+            </form>)}
         </div>
       </Motion.div>
     </div>
