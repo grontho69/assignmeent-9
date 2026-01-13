@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
-import { Eye, Mail, Lock, Sparkles } from "lucide-react";
+import { Eye, EyeOff, Sparkles } from "lucide-react";
 import { motion as Motion } from "motion/react";
 
 const Login = () => {
+  
+    const [show, setShow] = useState(false);
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 grid-background flex items-center justify-center px-4 py-12">
       <Motion.div
@@ -15,7 +17,7 @@ const Login = () => {
 
         <div className="relative glass-card rounded-2xl p-8 border border-cyan-500/30">
           
-          {/* Header */}
+         
           <Motion.div
             className="flex items-center justify-center gap-2 mb-6"
             animate={{ rotate: [0, 5, -5, 0] }}
@@ -28,16 +30,16 @@ const Login = () => {
             Welcome Back
           </h2>
 
-          {/* Form (UI only) */}
+          
           <form className="space-y-5">
             
-            {/* Email */}
+           
             <div>
               <label className="block text-gray-300 mb-2 font-medium">
                 Email
               </label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+               
                 <input
                   type="email"
                   placeholder="your@email.com"
@@ -46,23 +48,29 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Password */}
+            
             <div>
               <label className="block text-gray-300 mb-2 font-medium">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+               
                 <input
-                  type="password"
+                  type= {show ? "text" :"password"}
                   placeholder="••••••••"
                   className="w-full pl-12 pr-12 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 />
-                <Eye className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+              <button
+                  type="button"
+                  onClick={()=> setShow(!show)}
+                  className="absolute right-4 top-1/2 z-50 text-gray-500 hover:text-cyan-400 transition-colors"
+                >
+                  {show ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+                </button>
               </div>
             </div>
 
-            {/* Forgot password */}
+            
             <div className="text-right">
               <Link
                 to="/forgot-password"
@@ -72,7 +80,7 @@ const Login = () => {
               </Link>
             </div>
 
-            {/* Login Button */}
+            
             <button
               type="button"
               className="w-full cyber-button py-3 text-white rounded-xl font-medium"
@@ -81,14 +89,14 @@ const Login = () => {
             </button>
           </form>
 
-          {/* Divider */}
+       
           <div className="my-6 flex items-center">
             <div className="flex-1 border-t border-gray-700"></div>
             <span className="px-4 text-gray-500">OR</span>
             <div className="flex-1 border-t border-gray-700"></div>
           </div>
 
-          {/* Google Login (UI only) */}
+        
           <button
             type="button"
             className="w-full py-3 glass-card text-white rounded-xl flex items-center justify-center gap-3 border border-cyan-500/30 hover:border-pink-500/50"
@@ -102,7 +110,6 @@ const Login = () => {
             Continue with Google
           </button>
 
-          {/* Footer */}
           <p className="mt-6 text-center text-gray-400">
             Don&apos;t have an account?{" "}
             <Link

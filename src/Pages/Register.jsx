@@ -1,16 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion as Motion } from "motion/react";
 import { Link } from "react-router";
-import {
-  Eye,
-  Mail,
-  Lock,
-  User,
-  Image,
-  Sparkles
-} from "lucide-react";
+import {Eye,Mail,Lock,User,Image,Sparkles, EyeOff} from "lucide-react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/Firebase.Config";
+import { toast } from "react-toastify";
 
 const Register = () => {
+
+  const [show, setShow] = useState(false);
+
+
+  const handelSignup = (e) => { 
+    e.preventDefault();
+
+    const name = e.target.name.value;
+    const photoURL = e.target.photo.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log({ email, name, password, photoURL })
+    const passCheck = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!passCheck.test(password)) {
+          toast.error(
+            "Password must be at least 6 characters and include uppercase & lowercase letters."
+          );
+          return;
+        }
+    
+    
+
+    createUserWithEmailAndPassword(auth, email, password).then(res => {
+      console.log(res);
+      toast.success("registration successfull")
+    }).catch(e => {
+        toast.error(e.message)
+      })
+   }
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 grid-background flex items-center justify-center px-4 py-12">
       <Motion.div
@@ -22,7 +47,7 @@ const Register = () => {
 
         <div className="relative glass-card rounded-2xl p-8 border border-cyan-500/30">
           
-          {/* Header */}
+          
           <Motion.div
             className="flex items-center justify-center gap-2 mb-6"
             animate={{ rotate: [0, -5, 5, 0] }}
@@ -35,94 +60,49 @@ const Register = () => {
             Join GameHub
           </h2>
 
-          {/* Form (UI only) */}
-          <form className="space-y-4">
-            
-            {/* Name */}
-            <div>
-              <label className="block text-gray-300 mb-2 font-medium">
-                Name
-              </label>
-              <div className="relative">
-                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                <input
-                  type="text"
+        
+          <form onSubmit={handelSignup} className="space-y-4">
+                          <label htmlFor="name" className="block text-gray-300 mb-2 font-medium">Name</label>
+          <input type="text" name="name" className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
                   placeholder="John Doe"
-                  className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-gray-300 mb-2 font-medium">
-                Email
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                />
-              </div>
-            </div>
-
-            {/* Photo URL */}
-            <div>
-              <label className="block text-gray-300 mb-2 font-medium">
-                Photo URL
-              </label>
-              <div className="relative">
-                <Image className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                <input
-                  type="url"
-                  placeholder="https://example.com/photo.jpg"
-                  className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                />
-              </div>
-            </div>
-
-            {/* Password */}
-            <div>
-              <label className="block text-gray-300 mb-2 font-medium">
-                Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                <input
-                  type="password"
+              required />
+                          <label htmlFor="photoURL" className="block text-gray-300 mb-2 font-medium">Photo URL</label>
+          <input type="text" name="photo" className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+              placeholder="https://example.com/photo.jpg" required />
+            <label htmlFor="email" className="block text-gray-300 mb-2 font-medium">Email</label>
+          <input type="email" name="email"  className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+                  placeholder="your@email.com" required />
+            <div className="relative group">
+               <label htmlFor="password" className="block text-gray-300 mb-2 font-medium">Password</label>
+            <input
+              type= {show ? "text" :"password"}
+              name="password"
+              className="w-full pl-12 pr-12 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
                   placeholder="••••••••"
-                  className="w-full pl-12 pr-12 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                />
-                <Eye className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-              </div>
+              required
+              />
+               <button
+                  type="button"
+                  onClick={()=> setShow(!show)}
+                  className="absolute right-4 top-1/2 z-50 text-gray-500 hover:text-cyan-400 transition-colors"
+                >
+                  {show ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+                </button>
+            
+          </div>
+          <button  type="submit"
+              className="w-full cyber-button py-3 text-white rounded-xl font-medium">Register</button>
+     
+        </form>
 
-              {/* Password hints (UI only) */}
-              <div className="mt-2 space-y-1 text-xs text-gray-400">
-                <p>✓ At least 6 characters</p>
-                <p>✓ One uppercase letter</p>
-                <p>✓ One lowercase letter</p>
-              </div>
-            </div>
-
-            {/* Register Button */}
-            <button
-              type="button"
-              className="w-full cyber-button py-3 text-white rounded-xl font-medium"
-            >
-              Register
-            </button>
-          </form>
-
-          {/* Divider */}
+         
           <div className="my-6 flex items-center">
             <div className="flex-1 border-t border-gray-700"></div>
             <span className="px-4 text-gray-500">OR</span>
             <div className="flex-1 border-t border-gray-700"></div>
           </div>
 
-          {/* Google Button (UI only) */}
+       
           <button
             type="button"
             className="w-full py-3 glass-card text-white rounded-xl flex items-center justify-center gap-3 border border-cyan-500/30 hover:border-pink-500/50"
@@ -136,7 +116,7 @@ const Register = () => {
             Continue with Google
           </button>
 
-          {/* Footer */}
+          
           <p className="mt-6 text-center text-gray-400">
             Already have an account?{" "}
             <Link
