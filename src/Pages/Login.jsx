@@ -5,9 +5,10 @@ import { motion as Motion } from "motion/react";
 import { signInWithEmailAndPassword } from "firebase/auth/cordova";
 import { auth } from "../firebase/Firebase.Config";
 import { toast } from "react-toastify";
-import { signOut } from "firebase/auth";
+import { signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 
-
+const provider = new GoogleAuthProvider();
 const Login = () => { 
   const [user, setUser] = useState(null);
 
@@ -26,6 +27,17 @@ const Login = () => {
     })
   }
   console.log(user)
+
+  const handelGoogleSignIn = () => {
+    signInWithPopup(auth, provider).then((res) => {console.log(res);
+      setUser(res.user)
+      toast.success("login successfull")
+      
+    }).catch((e) => {
+      toast.error(e.message);
+    })
+  }
+
   const logout = () => {
     signOut(auth).then(() => {
       toast.success("logout sucessfull")
@@ -150,7 +162,8 @@ const Login = () => {
 
         
           <button
-            type="button"
+                type="button"
+                onClick={handelGoogleSignIn}
             className="w-full py-3 glass-card text-white rounded-xl flex items-center justify-center gap-3 border border-cyan-500/30 hover:border-pink-500/50"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
