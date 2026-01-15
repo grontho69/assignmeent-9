@@ -80,15 +80,15 @@
     "developer": "Studio Wildcard"
   },
   {
-    "id": "9",
-    "title": "Genshin Impact",
-    "coverPhoto": "https://cdn.cloudflare.steamstatic.com/steam/apps/1674540/header.jpg",
-    "category": "RPG",
-    "downloadLink": "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact",
-    "description": "Open-world action RPG with elemental combat and exploration.",
-    "ratings": "4.4",
-    "developer": "HoYoverse"
-  },
+  "id": "9",
+  "title": "Elden Ring",
+  "coverPhoto": "https://steamcdn-a.akamaihd.net/steam/apps/1245620/library_600x900_2x.jpg",
+  "category": "Action RPG",
+  "downloadLink": "https://store.steampowered.com/app/1245620/ELDEN_RING/",
+  "description": "An open-world action RPG developed by FromSoftware, featuring deep combat, vast exploration, and a dark fantasy world created in collaboration with George R. R. Martin.",
+  "ratings": "4.8",
+  "developer": "FromSoftware"
+},
   {
     "id": "10",
     "title": "Rocket League",

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion as Motion } from "motion/react";
 import { Link } from "react-router";
 import {Eye,Mail,Lock,User,Image,Sparkles, EyeOff} from "lucide-react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/Firebase.Config";
 import { toast } from "react-toastify";
 
@@ -30,6 +30,17 @@ const Register = () => {
     
 
     createUserWithEmailAndPassword(auth, email, password).then(res => {
+
+      updateProfile(res.user, {
+        displayName: name, photoURL: photoURL,
+  
+      }).then((res) => {
+        console.log(res);
+        toast.success("registration successfull")
+      }).catch((e) => {
+   toast.error(e.message)
+ })
+
       console.log(res);
       toast.success("registration successfull")
     }).catch(e => {
