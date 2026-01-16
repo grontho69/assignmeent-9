@@ -1,17 +1,19 @@
 import React from 'react'
  import { motion as Motion } from 'motion/react'
 import { Download, Star } from 'lucide-react'
+import { Link } from 'react-router';
 const GameCard = ({games}) => {
   return (
-    <div >
-      <Motion.div
+    <div  >
+      <Link to={`/game-details/${games.id}`}  >
+         <Motion.div
               key={games.id}
               whileHover={{ y: -10, scale: 1.02 }}
               className="glass-card rounded-xl overflow-hidden group cursor-pointer"
             >
               <div className="relative h-48">
                 <img
-                  src={games.coverPhoto}
+                  src={games.image}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   alt="Game"
                 />
@@ -39,6 +41,7 @@ const GameCard = ({games}) => {
                 </div>
               </div>
             </Motion.div>
+      </Link>
     </div>
   )
 }

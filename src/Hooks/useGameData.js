@@ -9,7 +9,7 @@ const useGameData = () => {
 
   useEffect(() => {
     
-    axios('./gameData.json').then(data=>setGameData(data.data)).catch(err => setError(err)).finally(()=> setLoading(false))
+    axios('../gameData.json').then(data=>setGameData(data.data)).catch(err => setError(err)).finally(()=> setLoading(false))
    },[])
 
   
