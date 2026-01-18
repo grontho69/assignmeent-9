@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { Eye, EyeOff, LogOut, Sparkles, User } from "lucide-react";
 import { motion as Motion } from "motion/react";
 import { signInWithEmailAndPassword } from "firebase/auth/cordova";
 import { auth } from "../firebase/Firebase.Config";
 import { toast } from "react-toastify";
-import { signInWithPopup, signOut } from "firebase/auth";
+import { sendPasswordResetEmail, signInWithPopup, signOut } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
 const Login = () => { 
   const [user, setUser] = useState(null);
+  const emailRef = useRef(null)
 
 
   const handelSignin = (e) => {
@@ -29,7 +30,12 @@ const Login = () => {
   console.log(user)
 
   const handelGoogleSignIn = () => {
-    signInWithPopup(auth, provider).then((res) => {console.log(res);
+    signInWithPopup(auth, provider).then((res) => {
+      if (!res.user?.emailVerified) {
+        toast.error('Your email is not verified')
+        return;
+      }
+      console.log(res);
       setUser(res.user)
       toast.success("login successfull")
       
@@ -47,6 +53,16 @@ const Login = () => {
     })
   }
   const [show, setShow] = useState(false);
+
+  
+  const handelForgetPass = (e) => {
+    const email = emailRef.current.value;
+    sendPasswordResetEmail(auth, email).then((res) => {
+       toast.success("Password reset successfully.Check your email")
+    }).catch((e) => {
+       toast.error(e.message)
+     })
+   }
   
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 grid-background flex items-center justify-center px-4 py-12">
@@ -128,7 +144,9 @@ const Login = () => {
             ):(  <form onSubmit={handelSignin} className="space-y-4">
                                  
                    <label htmlFor="email" className="block text-gray-300 mb-2 font-medium">Email</label>
-                 <input type="email" name="email"  className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+              <input type="email" name="email"
+             ref={emailRef}
+                className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
                          placeholder="your@email.com" required />
                    <div className="relative group">
                       <label htmlFor="password" className="block text-gray-300 mb-2 font-medium">Password</label>
@@ -147,7 +165,20 @@ const Login = () => {
                          {show ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
                        </button>
                    
-                 </div>
+              </div>
+              <div className="text-right">
+              <NavLink
+                 
+                  onClick={handelForgetPass}
+                  type="button"
+                  
+                  className="text-sm text-cyan-400 hover:text-pink-400 transition-colors"
+                  
+              >
+                Forgot Password?
+              </NavLink>
+            </div>
+
                  <button  type="submit"
                      className="w-full cyber-button py-3 text-white rounded-xl font-medium"> Login </button>
             
