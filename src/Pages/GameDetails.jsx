@@ -3,12 +3,30 @@ import { Star, Calendar, DollarSign, Download, Tag, Monitor, Zap, Shield, Users 
 import { motion as Motion } from "motion/react";
 import useGameData from "../Hooks/useGameData";
 import { useParams } from "react-router";
+import { PacmanLoader } from "react-spinners";
 
 const GameDetails = () => {
   const { gameData, loading, error } = useGameData()
   const { id } = useParams();
   const game = gameData.find(g => String(g.id) === id)
-  if (loading) return <p>Loading....</p>
+  if (loading) {
+  return (
+    <div className="min-h-[80vh] flex items-center justify-center">
+      <PacmanLoader
+        color="#ab9fe9"
+        size={30}
+        speedMultiplier={1}
+      />
+    </div>
+  );
+  }
+  if (error) {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center text-red-400">
+      Failed to load games. Try again later.
+    </div>
+  );
+}
   
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 grid-background">

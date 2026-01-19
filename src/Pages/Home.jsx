@@ -8,6 +8,8 @@ import { Link, Navigate} from "react-router";
 import GameCard from "../Components/GameCard";
 import useGameData from "../Hooks/useGameData";
 import GameDetails from "../Pages/GameDetails";
+import { PacmanLoader } from "react-spinners";
+
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -17,7 +19,25 @@ const Home = () => {
   
   
   const trendingGames = gameData.slice(0, 3)
-  const bannerGames = gameData.slice(0,3)
+  const bannerGames = gameData.slice(0, 3)
+  if (loading) {
+  return (
+    <div className="min-h-[80vh] flex items-center justify-center">
+      <PacmanLoader
+        color="#ab9fe9"
+        size={30}
+        speedMultiplier={1}
+      />
+    </div>
+  );
+  }
+  if (error) {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center text-red-400">
+      Failed to load games. Try again later.
+    </div>
+  );
+}
   
   const sliderSettings = {
   dots: true,

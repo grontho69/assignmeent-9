@@ -35,9 +35,9 @@ const GameCard = ({games}) => {
                   <span className="px-3 py-1 rounded-full text-sm text-cyan-400 border border-cyan-500/30 bg-cyan-500/10">
                     {games.category}g
                   </span>
-                  <a href={games.downloadLink}className="text-green-400 font-semibold">
+                  <button href={games.downloadLink}className="text-green-400 font-semibold">
                     <Download  />
-                  </a>
+                  </button>
                 </div>
               </div>
             </Motion.div>

@@ -15,7 +15,7 @@ import { PacmanLoader } from "react-spinners";
 const Navbar = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
-  const { user,setUser,signOutFunc,loading,setLoading } = useContext(AuthContext)
+  const { user,setUser,signOutFunc,loading, } = useContext(AuthContext)
   
   const logout = () => {
       signOutFunc().then(() => {

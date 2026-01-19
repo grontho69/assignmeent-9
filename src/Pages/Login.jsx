@@ -13,7 +13,7 @@ import { AuthContext } from "../context/AuthContext";
 const Login = () => { 
   
   const emailRef = useRef(null)
-  const {signInWithEmailAndPasswordFunc,signInWithPopupFunc,sendPasswordResetEmailFunc,user,setUser}= useContext(AuthContext)
+  const {signInWithEmailAndPasswordFunc,signInWithPopupFunc,user,setUser}= useContext(AuthContext)
 
 const navigate = useNavigate()
 
@@ -54,14 +54,7 @@ const navigate = useNavigate()
   const [show, setShow] = useState(false);
 
   
-  const handelForgetPass = () => {
-    const email = emailRef.current.value;
-    sendPasswordResetEmailFunc( email).then((res) => {
-       toast.success("Password reset successfully.Check your email")
-    }).catch((e) => {
-       toast.error(e.message)
-     })
-   }
+  
   
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 grid-background flex items-center justify-center px-4 py-12">
@@ -117,16 +110,13 @@ const navigate = useNavigate()
                    
               </div>
               <div className="text-right">
-              <NavLink
-                 
-                  onClick={handelForgetPass}
-                  type="button"
-                  
-                  className="text-sm text-cyan-400 hover:text-pink-400 transition-colors"
-                  
-              >
-                Forgot Password?
-              </NavLink>
+             <NavLink
+  to="/forgot-password"
+  state={{ email: emailRef.current?.value }}
+  className="text-sm text-cyan-400 hover:text-pink-400 transition-colors"
+>
+  Forgot Password?
+</NavLink>
             </div>
 
                  <button  type="submit"

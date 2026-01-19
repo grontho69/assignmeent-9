@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import useGameData from '../Hooks/useGameData'
+import { PacmanLoader } from "react-spinners";
+
 
 import GameCard from '../Components/GameCard'
 import { Filter, Search } from 'lucide-react';
@@ -10,6 +12,26 @@ const AllGames = () => {
   const [search, setSearch] = useState("");
   const term = search.trim().toLowerCase();
   const searchedGames = term ? gameData.filter(game => game.title.toLowerCase().includes(term)) : gameData;
+  if (loading) {
+  return (
+    <div className="min-h-[80vh] flex items-center justify-center">
+      <PacmanLoader
+        color="#ab9fe9"
+        size={30}
+        speedMultiplier={1}
+      />
+    </div>
+  );
+  }
+  if (error) {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center text-red-400">
+      Failed to load games. Try again later.
+    </div>
+  );
+}
+
+
   
   return (
     <div>

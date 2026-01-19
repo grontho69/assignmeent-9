@@ -9,6 +9,8 @@ import Login from "../Pages/Login";
 import GameDetails from "../Pages/GameDetails";
 import Register from "../Pages/Register";
 import Profile from "../Pages/Profile";
+import PrivateRouts from "../Private/PrivateRouts";
+import ForgotPassword from "../Pages/ForgotPassword";
 
 
 
@@ -34,7 +36,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/game-details/:id',
-        element: <GameDetails />,
+        element: <PrivateRouts><GameDetails/></PrivateRouts>,
         
       },
       {
@@ -47,8 +49,13 @@ export const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        element:<Profile/>
-,      }
+        element:<PrivateRouts><Profile/></PrivateRouts>
+        ,
+      },
+      {
+        path: '/forgot-password',
+        element:<ForgotPassword/>
+      }
 
 
     ]

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { PacmanLoader } from "react-spinners";
 
 
 import { AuthContext } from '../context/AuthContext';
@@ -6,11 +7,31 @@ import { User, Mail, Edit, Trophy, Clock } from 'lucide-react';
 import { motion as Motion } from 'motion/react';
 const Profile = () => {
 
-   const { user } = useContext(AuthContext)
+   const { user,loading,error } = useContext(AuthContext)
  
+  if (loading) {
+  return (
+    <div className="min-h-[80vh] flex items-center justify-center">
+      <PacmanLoader
+        color="#ab9fe9"
+        size={30}
+        speedMultiplier={1}
+      />
+    </div>
+  );
+  }
+  if (error) {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center text-red-400">
+      Failed to load games. Try again later.
+    </div>
+  );
+}
+  
   if (!user) {
     return null
   }
+
   
   return (
     <div>
