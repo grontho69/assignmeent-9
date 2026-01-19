@@ -8,14 +8,7 @@ const ForgotPassword = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-
-  // Prefill email from Login page
-  useEffect(() => {
-    if (location.state?.email) {
-      setEmail(location.state.email);
-    }
-  }, [location.state]);
+  const [email, setEmail] = useState(location.state?.email || "");
 
   const handleReset = (e) => {
     e.preventDefault();
@@ -29,7 +22,7 @@ const ForgotPassword = () => {
       .then(() => {
         toast.success("Password reset email sent");
 
-        // Redirect to Gmail inbox
+        
         window.location.href = "https://mail.google.com";
       })
       .catch((err) => {

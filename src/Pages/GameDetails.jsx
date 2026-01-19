@@ -50,7 +50,7 @@ const GameDetails = () => {
         >
           <div className="flex flex-col lg:flex-row gap-8">
             
-            {/* Left Image */}
+            
             <div className="lg:w-1/3">
               <img
                 src={game.image}
@@ -59,7 +59,7 @@ const GameDetails = () => {
               />
             </div>
 
-            {/* Right Content */}
+            
             <div className="lg:w-2/3">
               <div className="flex justify-between items-start mb-4">
                 <div>
@@ -85,7 +85,7 @@ const GameDetails = () => {
                 {game.description}
               </p>
 
-              {/* Platforms */}
+              
               <div className="mb-6">
                 <h3 className="text-white text-xl mb-3 flex items-center gap-2">
                   <Monitor className="w-5 h-5 text-cyan-400" />
@@ -101,7 +101,7 @@ const GameDetails = () => {
               </div>
 
             
-              {/* Price & Button */}
+              
               <div className="items-center gap-6 pt-6 border-t border-cyan-500/20">
                
                 <a href={game.downloadLink}>
@@ -115,7 +115,7 @@ const GameDetails = () => {
           </div>
         </Motion.div>
 
-        {/* Bottom Cards */}
+        
         <div className="grid md:grid-cols-2 gap-6 mt-8">
           <div className="glass-card p-6 rounded-xl border border-cyan-500/20">
             <div className="flex items-center gap-2 mb-4">

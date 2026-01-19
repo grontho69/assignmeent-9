@@ -14,7 +14,7 @@ const ErrorPage = () => {
         transition={{ duration: 0.4 }}
         className="relative max-w-lg w-full text-center"
       >
-        {/* glow */}
+       
         <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 to-pink-500 blur-xl opacity-20 rounded-3xl" />
 
         <div className="relative glass-card p-10 rounded-3xl border border-cyan-500/30">

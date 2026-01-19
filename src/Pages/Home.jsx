@@ -60,18 +60,18 @@ const Home = () => {
           {bannerGames.map((game, index) => (
             <div key={game.id} className="relative h-125">
               
-              {/* Background image */}
+              
               <img
                 src={game.image}   
                 alt={game.title}
                 className="absolute inset-0 w-full h-full object-cover"
               />
 
-              {/* Overlays */}
+             
               <div className="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/80 to-transparent" />
               <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-transparent" />
 
-              {/* Content */}
+              
               <div className="relative h-full max-w-7xl mx-auto px-6 flex items-center">
                 <Motion.div
                   initial={{ opacity: 0, x: -40 }}
@@ -116,7 +116,7 @@ const Home = () => {
       </section>
      
 
-      {/* ===== Trending Games UI ===== */}
+      
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="flex items-center gap-3 mb-12">
           <TrendingUp className="w-8 h-8 text-pink-500" />
@@ -132,7 +132,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ===== Newsletter UI ===== */}
+      
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-linear-to-r from-cyan-500/10 via-pink-500/10 to-cyan-500/10" />
         <div className="relative max-w-3xl mx-auto px-6 text-center">

@@ -13,6 +13,7 @@ import { AuthContext } from "../context/AuthContext";
 const Login = () => { 
   
   const emailRef = useRef(null)
+  const [email, setEmail] = useState("")
   const {signInWithEmailAndPasswordFunc,signInWithPopupFunc,user,setUser}= useContext(AuthContext)
 
 const navigate = useNavigate()
@@ -89,6 +90,8 @@ const navigate = useNavigate()
                    <label htmlFor="email" className="block text-gray-300 mb-2 font-medium">Email</label>
               <input type="email" name="email"
              ref={emailRef}
+             value={email}
+             onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 glass-card text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
                          placeholder="your@email.com" required />
                    <div className="relative group">
@@ -112,7 +115,7 @@ const navigate = useNavigate()
               <div className="text-right">
              <NavLink
   to="/forgot-password"
-  state={{ email: emailRef.current?.value }}
+  state={{ email: email }}
   className="text-sm text-cyan-400 hover:text-pink-400 transition-colors"
 >
   Forgot Password?
