@@ -1,28 +1,33 @@
-import React, { useRef, useState } from "react";
-import { Link, NavLink } from "react-router";
+import React, { useContext, useRef, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router";
 import { Eye, EyeOff, LogOut, Sparkles, User } from "lucide-react";
 import { motion as Motion } from "motion/react";
-import { signInWithEmailAndPassword } from "firebase/auth/cordova";
-import { auth } from "../firebase/Firebase.Config";
+
+;
 import { toast } from "react-toastify";
-import { sendPasswordResetEmail, signInWithPopup, signOut } from "firebase/auth";
+
 import { GoogleAuthProvider } from "firebase/auth";
+import { AuthContext } from "../context/AuthContext";
 
-const provider = new GoogleAuthProvider();
+
 const Login = () => { 
-  const [user, setUser] = useState(null);
+  
   const emailRef = useRef(null)
+  const {signInWithEmailAndPasswordFunc,signInWithPopupFunc,sendPasswordResetEmailFunc,user,setUser}= useContext(AuthContext)
 
+const navigate = useNavigate()
 
   const handelSignin = (e) => {
     
     e.preventDefault();
       const email = e.target.email.value;
     const password = e.target.password.value;
-    signInWithEmailAndPassword(auth, email, password).then(res => {
+    signInWithEmailAndPasswordFunc(email, password).then(res => {
+     
       console.log(res);
       setUser(res.user)
       toast.success("login successfull")
+      navigate('/')
     }).catch(e => {
       toast.error(e.message)
     })
@@ -30,34 +35,28 @@ const Login = () => {
   console.log(user)
 
   const handelGoogleSignIn = () => {
-    signInWithPopup(auth, provider).then((res) => {
-      if (!res.user?.emailVerified) {
+    signInWithPopupFunc().then((res) => {
+       if (!res.user?.emailVerified) {
         toast.error('Your email is not verified')
         return;
       }
       console.log(res);
       setUser(res.user)
       toast.success("login successfull")
+      navigate('/')
       
     }).catch((e) => {
       toast.error(e.message);
     })
   }
 
-  const logout = () => {
-    signOut(auth).then(() => {
-      toast.success("logout sucessfull")
-      setUser(null)
-    }).catch((e) => {
-      toast.error(e.message);
-    })
-  }
+  
   const [show, setShow] = useState(false);
 
   
-  const handelForgetPass = (e) => {
+  const handelForgetPass = () => {
     const email = emailRef.current.value;
-    sendPasswordResetEmail(auth, email).then((res) => {
+    sendPasswordResetEmailFunc( email).then((res) => {
        toast.success("Password reset successfully.Check your email")
     }).catch((e) => {
        toast.error(e.message)
@@ -89,59 +88,10 @@ const Login = () => {
           </h2>
 
           
-        { user ? (
-              
-            <div>
-               <NavLink 
-                  to="/login" 
-                  className="text-sm text-gray-300 hover:text-cyan-400 transition-colors"
-                >
-                  Login
-                </NavLink>
-                <NavLink
-                  to="/register" 
-                  className="px-4 py-2 cyber-button text-white rounded-lg text-sm font-medium relative overflow-hidden group"
-                >
-                  <span className="relative z-10">Register</span>
-                </NavLink>
+        
               
             
-              <div className="flex items-center gap-4">
-                
-                {/* Profile */}
-                <NavLink
-                  to="/profile"
-                  className="flex items-center gap-2 group"
-                  title="My Profile"
-                >
-                  {user.photoURL ? (
-                    <div className="relative">
-                      <img
-                        src={user.photoURL}
-                        alt={user.displayName || "User"}
-                        className="w-8 h-8 rounded-full object-cover neon-border group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all"
-                      />
-                      <div className="absolute inset-0 rounded-full bg-linear-to-r from-cyan-400/20 to-pink-500/20 group-hover:from-cyan-400/30 group-hover:to-pink-500/30 transition-all" />
-                    </div>
-                  ) : (
-                    <div className="w-8 h-8 rounded-full bg-linear-to-br from-cyan-500 to-pink-500 flex items-center justify-center neon-border">
-                      <User className="w-4 h-4 text-white" />
-                    </div>
-                  )}
-                </NavLink>
-
-                {/* Logout */}
-                <button
-                  onClick={logout}
-                  className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-pink-400 transition-colors group"
-                  title="Logout"
-                >
-                  <LogOut className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                  <span>Logout</span>
-                </button>
-              </div>
-              </div>
-            ):(  <form onSubmit={handelSignin} className="space-y-4">
+              <form onSubmit={handelSignin} className="space-y-4">
                                  
                    <label htmlFor="email" className="block text-gray-300 mb-2 font-medium">Email</label>
               <input type="email" name="email"
@@ -215,7 +165,7 @@ const Login = () => {
               Register here
             </Link>
             </p>
-            </form>)}
+            </form>
         </div>
       </Motion.div>
     </div>

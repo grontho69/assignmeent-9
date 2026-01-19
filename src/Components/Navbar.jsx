@@ -1,17 +1,31 @@
 
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink ,Link, useLocation } from "react-router";
 import { motion as Motion} from "motion/react";
 import { Gamepad2, Sparkles, User, LogOut } from "lucide-react";
 
 
 import MyContainer from "./MyContainer";
+import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
+import { PacmanLoader } from "react-spinners";
 
 
 
-const Navbar = ({ user, logout }) => {
+const Navbar = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
+  const { user,setUser,signOutFunc,loading,setLoading } = useContext(AuthContext)
+  
+  const logout = () => {
+      signOutFunc().then(() => {
+        toast.success("logout sucessfull")
+        setUser(null)
+      }).catch((e) => {
+        toast.error(e.message);
+      })
+    }
+
   return (
     <Motion.nav
       initial={{ y: -100 }}
@@ -62,7 +76,7 @@ const Navbar = ({ user, logout }) => {
             </NavLink>
 
 
-            {!user ? (
+            { loading ? (<PacmanLoader color="#ab9fe9" size={15} speedMultiplier={3} />):!user ? (
               <>
                <NavLink 
                   to="/login" 
