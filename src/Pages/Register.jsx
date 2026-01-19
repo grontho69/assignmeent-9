@@ -50,7 +50,7 @@ const Register = () => {
    console.log(res);
         
            signOutFunc().then(() => {
-                   toast.success("registration successfull. Check your email to active the account")
+                   toast.success("registration successfull. Check your spam-mail to active the account")
              setUser(null)
              navigate('/login')
                 })
